@@ -21,7 +21,7 @@ public class Main {
                             inputTask(scanner);
                             break;
                         case 2:
-                            // todo: обрабатываем пункт меню 2
+                            removeTask(scanner);
                             break;
                         case 3:
                             getTasksForDay(scanner);
@@ -100,6 +100,7 @@ public class Main {
         calendar.addTask(task);
     }
 
+
     public static void getTasksForDay(Scanner scanner) {
         scanner.nextLine();
         System.out.println("Введите дату (01.01.1970):");
@@ -114,6 +115,26 @@ public class Main {
             }
         }
         System.out.println(calendar.getTasksForOneDay(date));
+    }
+
+    public static void removeTask(Scanner scanner) {
+        scanner.nextLine();
+        System.out.println("Введите ID задачи:");
+        int id = 0;
+        boolean shouldEnterAgain = true;
+        while (shouldEnterAgain) {
+            try {
+                id = Integer.parseInt(scanner.nextLine());
+                shouldEnterAgain = false;
+            } catch (NumberFormatException e) {
+                System.out.println("Wrong format, enter again");
+            }
+        }
+        if (calendar.removeTask(id)) {
+            System.out.println("Задача успешно удалена!");
+        } else {
+            System.out.println("Нет задачи с таким ID!");
+        }
     }
 
     private static void printMenu() {

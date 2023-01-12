@@ -14,8 +14,8 @@ public class Calendar {
         mapOfTasks.put(task.getId(), task);
     }
 
-    public void removeTask(int id) {
-        mapOfTasks.remove(id);
+    public boolean removeTask(int id) {
+        return mapOfTasks.remove(id) != null;
     }
 
     public List<Task> getTasksForOneDay(LocalDate date) {
